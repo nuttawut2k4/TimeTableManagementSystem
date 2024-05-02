@@ -224,7 +224,7 @@ def fac_tt_frame(tt, f):
 
 
 
-conn = sqlite3.connect(r'files/timetable.db')
+conn = sqlite3.connect(r'database/timetable.db')
 if __name__ == "__main__":
     
     # connecting database

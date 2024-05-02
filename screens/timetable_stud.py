@@ -228,7 +228,7 @@ def student_tt_frame(tt, sec):
 
 
 
-conn = sqlite3.connect(r'files/timetable.db')
+conn = sqlite3.connect(r'database/timetable.db')
 if __name__ == "__main__":
     
     # connecting database

@@ -1,6 +1,10 @@
 # Time Table Management System
 Welcome to the Time Table Management System! This project is designed to help educational institutions efficiently manage their timetables. The system provides different screens tailored for administrators, students, and faculty members, allowing them to view, edit, and manage timetables, subjects, and schedules.  
 
+## NOTE
+This project is still under development. The current version is a prototype and is not intended for production use.  
+Also timetable-1 database is used for test ***purpose*** only.
+
 ## Features
 + **Admin Panel**: Administrators can manage users, subjects, and schedules efficiently.
 + **Student Panel**: Students can view their timetables and schedules.
@@ -31,3 +35,4 @@ This project is developed using Python and the Tkinter library for the graphical
 
 ## License
 This project is licensed under the MIT License - see the [LICENCE](LICENCE) file for details.
+

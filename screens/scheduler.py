@@ -5,7 +5,7 @@ import sqlite3
 
 days = 5
 periods = 7
-recess_break_aft = 4 # recess after 3rd Period
+recess_break_aft = 4
 section = None
 butt_grid = []
 
@@ -15,8 +15,6 @@ day_names = ['Monday', 'Tuesday', 'Wednesday', 'Thrusday', 'Friday']
 
 
 def update_p(d, p, tree, parent):
-    # print(section, d, p, str(sub.get()))
-
     try:
         if len(tree.selection()) > 1:
             messagebox.showerror("Bad Select", "Select one subject at a time!")
@@ -131,7 +129,7 @@ def update_table():
             
 
 # connecting database
-conn = sqlite3.connect(r'files/timetable.db')
+conn = sqlite3.connect(r'database/timetable.db')
 
 # creating Tabe in the database
 conn.execute('CREATE TABLE IF NOT EXISTS SCHEDULE\

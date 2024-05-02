@@ -151,7 +151,7 @@ if __name__ == "__main__":
     '''
 
     # connecting database
-    conn = sqlite3.connect(r'files/timetable.db')
+    conn = sqlite3.connect(r'database/timetable.db')
 
     # creating Tabe in the database
     conn.execute('CREATE TABLE IF NOT EXISTS STUDENT\

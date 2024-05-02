@@ -8,7 +8,7 @@ from screens import timetable_fac
 import sqlite3
 
 def challenge():
-    conn = sqlite3.connect(r'files/timetable.db')
+    conn = sqlite3.connect(r'database/timetable.db')
 
     user = str(combo1.get())
     if user == "Student":

@@ -106,11 +106,12 @@ def remove_data():
         messagebox.showerror("Bad Select", "Please select a subject from the list first!")
         return
     for i in tree.selection():
-        # print(tree.item(i)['values'][0])
-        conn.execute(f"DELETE FROM SUBJECTS WHERE SUBCODE = '{tree.item(i)['values'][0]}'")
+        subject_code = tree.item(i)['values'][0]
+        conn.execute(f"DELETE FROM SUBJECTS WHERE SUBCODE = ?", (subject_code,))
         conn.commit()
         tree.delete(i)
-        update_treeview()
+    update_treeview()
+
 
 
 
@@ -122,7 +123,7 @@ if __name__ == "__main__":
     '''
 
     # connecting database
-    conn = sqlite3.connect(r'files/timetable.db')
+    conn = sqlite3.connect(r'database/timetable.db')
 
     # creating Tabe in the database
     conn.execute('CREATE TABLE IF NOT EXISTS SUBJECTS\
