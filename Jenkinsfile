@@ -10,7 +10,7 @@ pipeline {
         
         stage('Install dependencies') {
             steps {
-                bat 'python -m pip install tk sqlite'
+                bat 'python -m pip install tk'
             }
         }
         
