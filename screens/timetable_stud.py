@@ -82,7 +82,7 @@ def process_button(d, p, sec):
     else:
         subcode = fini = subname = subtype = fname = femail = 'None'
 
-    print(subcode, fini, subname, subtype, fname, femail)
+    # print(subcode, fini, subname, subtype, fname, femail)
     tk.Label(details, text='Class Details', font=('Consolas', 15, 'bold')).pack(pady=15)
     tk.Label(details, text='Day: '+day_names[d], font=('Consolas'), anchor="w").pack(expand=1, fill=tk.X, padx=20)
     tk.Label(details, text='Period: '+str(p+1), font=('Consolas'), anchor="w").pack(expand=1, fill=tk.X, padx=20)

@@ -18,7 +18,7 @@ day_names = ['Monday', 'Tuesday', 'Wednesday', 'Thrusday', 'Friday']
 def select_fac():
     global fini
     fini = str(combo1.get())
-    print(fini)
+    # print(fini)
     update_table(fini)
 
 
@@ -29,7 +29,7 @@ def update_table(fini):
             cursor = conn.execute(f"SELECT SECTION, SUBCODE FROM SCHEDULE\
                 WHERE DAYID={i} AND PERIODID={j} AND FINI='{fini}'")
             cursor = list(cursor)
-            print(cursor)
+            # print(cursor)
             
             butt_grid[i][j]['bg'] = 'white'
             if len(cursor) != 0:
@@ -46,7 +46,7 @@ def update_table(fini):
                 sec_li = [x[0] for x in cursor]
                 t = ', '.join(sec_li)
                 butt_grid[i][j]['text'] = "Sections: " + t
-                print(i, j, cursor[0][0])
+                # print(i, j, cursor[0][0])
             else:
                 butt_grid[i][j]['fg'] = 'black'
                 butt_grid[i][j]['text'] = "No Class"
@@ -245,7 +245,7 @@ if __name__ == "__main__":
 
     cursor = conn.execute("SELECT DISTINCT INI FROM FACULTY")
     fac_li = [row[0] for row in cursor]
-    print(fac_li)
+    # print(fac_li)
     combo1 = ttk.Combobox(
         fac_select_f,
         values=fac_li,
