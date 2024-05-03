@@ -4,7 +4,7 @@ from tkinter import ttk
 from tkinter import messagebox
 import sys
 
-fid = passw = conf_passw = name = ini = email = subcode1 = subcode2 = None
+fid = passw = conf_passw = name = ini = email = subcode1 = subcode2 = subcode3 = subcode4 = None
 
 
 '''
@@ -19,17 +19,21 @@ fid = passw = conf_passw = name = ini = email = subcode1 = subcode2 = None
 
 # create treeview (call this function once)
 def create_treeview():
-    tree['columns'] = list(map(lambda x: '#' + str(x), range(1, 5)))
+    tree['columns'] = list(map(lambda x: '#' + str(x), range(1, 7)))
     tree.column("#0", width=0, stretch=tk.NO)
     tree.column("#1", width=70, stretch=tk.NO)
     tree.column("#2", width=200, stretch=tk.NO)
     tree.column("#3", width=80, stretch=tk.NO)
     tree.column("#4", width=80, stretch=tk.NO)
+    tree.column("#5", width=80, stretch=tk.NO)
+    tree.column("#6", width=80, stretch=tk.NO)
     tree.heading('#0', text="")
     tree.heading('#1', text="Fid")
     tree.heading('#2', text="Name")
     tree.heading('#3', text="Subject 1")
     tree.heading('#4', text="Subject 2")
+    tree.heading('#5', text="Subject 3")
+    tree.heading('#6', text="Subject 4")
     tree['height'] = 15
 
 
@@ -37,12 +41,12 @@ def create_treeview():
 def update_treeview():
     for row in tree.get_children():
         tree.delete(row)
-    cursor = conn.execute("SELECT FID, NAME, SUBCODE1, SUBCODE2 FROM FACULTY")
+    cursor = conn.execute("SELECT FID, NAME, SUBCODE1, SUBCODE2, SUBCODE3, SUBCODE4 FROM FACULTY")
     for row in cursor:
         tree.insert(
             "",
             0,
-            values=(row[0], row[1], row[2], row[3])
+            values=(row[0], row[1], row[2], row[3], row[4], row[5])
         )
     tree.place(x=530, y=100)
 
@@ -57,6 +61,8 @@ def parse_data():
     email = str(email_entry.get())
     subcode1 = str(combo1.get())
     subcode2 = str(combo2.get())
+    subcode3 = str(combo3.get())
+    subcode4 = str(combo4.get())
 
     if fid == "" or passw == "" or \
         conf_passw == "" or name == "":
@@ -73,8 +79,8 @@ def parse_data():
         messagebox.showwarning("Bad Input", "Subject 1 cant be NULL")
         return
     
-    conn.execute(f"REPLACE INTO FACULTY (FID, PASSW, NAME, INI, EMAIL, SUBCODE1, SUBCODE2)\
-        VALUES ('{fid}','{passw}','{name}', '{ini}', '{email}', '{subcode1}', '{subcode2}')")
+    conn.execute(f"REPLACE INTO FACULTY (FID, PASSW, NAME, INI, EMAIL, SUBCODE1, SUBCODE2, SUBCODE3, SUBCODE4)\
+        VALUES ('{fid}','{passw}','{name}', '{ini}', '{email}', '{subcode1}', '{subcode2}', '{subcode3}', '{subcode4}')")
     conn.commit()
     update_treeview()
     
@@ -86,6 +92,8 @@ def parse_data():
     email_entry.delete(0, tk.END)
     combo1.current(0)
     combo2.current(0)
+    combo3.current(0)
+    combo4.current(0)
     
 
 # update a row in the database
@@ -116,6 +124,8 @@ def update_data():
         email_entry.insert(0, cursor[0][4])
         combo1.current(subcode_li.index(cursor[0][5]))
         combo2.current(subcode_li.index(cursor[0][6]))
+        combo3.current(subcode_li.index(cursor[0][7]))
+        combo4.current(subcode_li.index(cursor[0][8]))
 
         conn.execute(f"DELETE FROM FACULTY WHERE FID = '{cursor[0][0]}'")
         conn.commit()
@@ -172,7 +182,9 @@ if __name__ == "__main__":
     INI CHAR(5) NOT NULL,\
     EMAIL CHAR(50) NOT NULL,\
     SUBCODE1 CHAR(10) NOT NULL,\
-    SUBCODE2 CHAR(10)    )')
+    SUBCODE2 CHAR(10),\
+    SUBCODE3 CHAR(10),\
+    SUBCODE4 CHAR(10)    )')
 
 
     '''
@@ -186,7 +198,7 @@ if __name__ == "__main__":
 
     # TKinter Window
     subtk = tk.Tk()
-    subtk.geometry('1000x550')
+    subtk.geometry('1200x650')
     subtk.title('Add/Update Faculties')
 
     # Label1
@@ -194,7 +206,7 @@ if __name__ == "__main__":
         subtk,
         text='List of Faculties',
         font=('Consolas', 20, 'bold')
-    ).place(x=600, y=50)
+    ).place(x=700, y=50)
 
     # Label2
     tk.Label(
@@ -345,6 +357,36 @@ if __name__ == "__main__":
     combo2.place(x=260, y=410)
     combo2.current(0)
 
+    # Label12
+    tk.Label(
+        subtk,
+        text='Subject 3:',
+        font=('Consolas', 12)
+    ).place(x=100, y=450)
+
+    # ComboBox2
+    combo3 = ttk.Combobox(
+        subtk,
+        values=subcode_li,
+    )
+    combo3.place(x=260, y=450)
+    combo3.current(0)
+
+    # Label13
+    tk.Label(
+        subtk,
+        text='Subject 4:',
+        font=('Consolas', 12)
+    ).place(x=100, y=490)
+
+    # ComboBox2
+    combo4 = ttk.Combobox(
+        subtk,
+        values=subcode_li,
+    )
+    combo4.place(x=260, y=490)
+    combo4.current(0)
+
     # Button1
     B1 = tk.Button(
         subtk,
@@ -352,7 +394,7 @@ if __name__ == "__main__":
         font=('Consolas', 12),
         command=parse_data
     )
-    B1.place(x=150,y=465)
+    B1.place(x=150,y=535)
 
     # Button2
     B2 = tk.Button(
@@ -361,7 +403,7 @@ if __name__ == "__main__":
         font=('Consolas', 12),
         command=update_data
     )
-    B2.place(x=410,y=465)
+    B2.place(x=410,y=535)
 
     # Treeview1
     tree = ttk.Treeview(subtk)
@@ -375,7 +417,7 @@ if __name__ == "__main__":
         font=('Consolas', 12),
         command=remove_data
     )
-    B3.place(x=650,y=465)
+    B3.place(x=650,y=535)
 
     # looping Tkiniter window
     subtk.mainloop()
