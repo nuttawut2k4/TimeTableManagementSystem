@@ -55,12 +55,12 @@ def update_table(fini):
 
 
 def process_button(d, p):
-    print(d, p, fini)
+    # print(d, p, fini)
     details = tk.Tk()
     cursor = conn.execute(f"SELECT SECTION, SUBCODE FROM SCHEDULE\
                 WHERE DAYID={d} AND PERIODID={p} AND FINI='{fini}'")
     cursor = list(cursor)
-    print("section", cursor)
+    # print("section", cursor)
     if len(cursor) != 0:
         sec_li = [x[0] for x in cursor]
         t = ', '.join(sec_li)
@@ -219,7 +219,7 @@ def fac_tt_frame(tt, f):
         # print(b)
         b = []
 
-    print(butt_grid[0][1], butt_grid[1][1])
+    # print(butt_grid[0][1], butt_grid[1][1])
     update_table(fini)
 
 

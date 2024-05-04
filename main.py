@@ -17,7 +17,7 @@ def challenge():
         if len(cursor) == 0:
             messagebox.showwarning('Bad id', 'No such user found!')
         elif passw_entry.get() != cursor[0][0]:
-            messagebox.showerror('Bad pass', 'Incorret Password!')
+            messagebox.showerror('Bad pass', 'Incorrect Password!')
         else:
             nw = tk.Tk()
             tk.Label(
@@ -25,7 +25,6 @@ def challenge():
                 text=f'{cursor[0][2]}\tSection: {cursor[0][1]}\tRoll No.: {cursor[0][3]}',
                 font=('Consolas', 12, 'italic'),
             ).pack()
-            m.destroy()
             timetable_stud.student_tt_frame(nw, cursor[0][1])
             nw.mainloop()
 
@@ -35,7 +34,7 @@ def challenge():
         if len(cursor) == 0:
             messagebox.showwarning('Bad id', 'No such user found!')
         elif passw_entry.get() != cursor[0][0]:
-            messagebox.showerror('Bad pass', 'Incorret Password!')
+            messagebox.showerror('Bad pass', 'Incorrect Password!')
         else:
             nw = tk.Tk()
             tk.Label(
@@ -43,18 +42,16 @@ def challenge():
                 text=f'{cursor[0][2]} ({cursor[0][1]})\tEmail: {cursor[0][3]}',
                 font=('Consolas', 12, 'italic'),
             ).pack()
-            m.destroy()
             timetable_fac.fac_tt_frame(nw, cursor[0][1])
             nw.mainloop()
 
     elif user == "Admin":
         if id_entry.get() == 'admin' and passw_entry.get() == 'admin':
-            m.destroy()
             os.system('python screens\\admin_screen.py')
             # sys.exit()
         else:
-            messagebox.showerror('Bad Input', 'Incorret Username/Password!')
-            
+            messagebox.showerror('Bad Input', 'Incorrect Username/Password!')
+
 
 
 m = tk.Tk()

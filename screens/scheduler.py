@@ -29,7 +29,7 @@ def update_p(d, p, tree, parent):
             return
 
         conn.commit()
-        print(row)
+        # print(row)
         conn.execute(f"REPLACE INTO SCHEDULE (ID, DAYID, PERIODID, SUBCODE, SECTION, FINI)\
             VALUES ('{section+str((d*periods)+p)}', {d}, {p}, '{row[1]}', '{section}', '{row[0]}')")
         conn.commit()
@@ -45,7 +45,7 @@ def update_p(d, p, tree, parent):
 
 
 def process_button(d, p):
-    print(d, p)
+    # print(d, p)
     add_p = tk.Tk()
     # add_p.geometry('200x500')
 
@@ -86,7 +86,7 @@ def process_button(d, p):
     FROM FACULTY, SUBJECTS\
     WHERE FACULTY.SUBCODE1=SUBJECTS.SUBCODE OR FACULTY.SUBCODE2=SUBJECTS.SUBCODE OR FACULTY.SUBCODE3=SUBJECTS.SUBCODE OR FACULTY.SUBCODE4=SUBJECTS.SUBCODE")
     for row in cursor:
-        print(row)
+        # print(row)
         tree.insert(
             "",
             0,
@@ -108,7 +108,7 @@ def process_button(d, p):
 def select_sec():
     global section
     section = str(combo1.get())
-    print(section)
+    # print(section)
     update_table()
 
 
@@ -118,11 +118,11 @@ def update_table():
             cursor = conn.execute(f"SELECT SUBCODE, FINI FROM SCHEDULE\
                 WHERE DAYID={i} AND PERIODID={j} AND SECTION='{section}'")
             cursor = list(cursor)
-            print(cursor)
+            # print(cursor)
             if len(cursor) != 0:
                 butt_grid[i][j]['text'] = str(cursor[0][0]) + '\n' + str(cursor[0][1])
                 butt_grid[i][j].update()
-                print(i, j, cursor[0][0])
+                # print(i, j, cursor[0][0])
             else:
                 butt_grid[i][j]['text'] = "No Class"
                 butt_grid[i][j].update()
@@ -243,7 +243,7 @@ tk.Label(
 cursor = conn.execute("SELECT DISTINCT SECTION FROM STUDENT")
 sec_li = [row[0] for row in cursor]
 # sec_li.insert(0, 'NULL')
-print(sec_li)
+# print(sec_li)
 combo1 = ttk.Combobox(
     sec_select_f,
     values=sec_li,
@@ -262,7 +262,7 @@ b.pack(side=tk.LEFT, padx=10)
 b.invoke()
 
 
-print(butt_grid[0][1], butt_grid[1][1])
+# print(butt_grid[0][1], butt_grid[1][1])
 update_table()
 
 

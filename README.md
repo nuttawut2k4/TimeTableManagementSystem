@@ -8,7 +8,7 @@ Also timetable-1 database is used for test ***purpose*** only.
 ## Features
 + **Admin Panel**: Administrators can manage users, subjects, and schedules efficiently.
 + **Student Panel**: Students can view their timetables and schedules.
-+ **Faculty Panel**: Faculty members can view their timetables, schedules, and manage subjects they teach.
++ **Faculty Panel**: Faculty members can view their timetables.
 + **Scheduler**: A feature-rich scheduler allows administrators to create and manage schedules easily.
 + **Subject Management**: Users can add, edit, and delete subjects as required.  
 

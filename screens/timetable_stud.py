@@ -18,7 +18,7 @@ day_names = ['Monday', 'Tuesday', 'Wednesday', 'Thrusday', 'Friday']
 def select_sec():
     global section
     section = str(combo1.get())
-    print(section)
+    # print(section)
     update_table(section)
 
 
@@ -29,7 +29,7 @@ def update_table(sec):
             cursor = conn.execute(f"SELECT SUBCODE, FINI FROM SCHEDULE\
                 WHERE DAYID={i} AND PERIODID={j} AND SECTION='{sec}'")
             cursor = list(cursor)
-            print(cursor)
+            # print(cursor)
             
             butt_grid[i][j]['bg'] = 'white'
             if len(cursor) != 0:
@@ -45,7 +45,7 @@ def update_table(sec):
 
                 butt_grid[i][j]['text'] = str(cursor[0][0]) + '\n' + str(cursor[0][1])
                 butt_grid[i][j].update()
-                print(i, j, cursor[0][0])
+                # print(i, j, cursor[0][0])
             else:
                 butt_grid[i][j]['fg'] = 'black'
                 butt_grid[i][j]['text'] = "No Class"
@@ -223,7 +223,7 @@ def student_tt_frame(tt, sec):
         # print(b)
         b = []
 
-    print(butt_grid[0][1], butt_grid[1][1])
+    # print(butt_grid[0][1], butt_grid[1][1])
     update_table(sec)
 
 
@@ -251,7 +251,7 @@ if __name__ == "__main__":
     cursor = conn.execute("SELECT DISTINCT SECTION FROM STUDENT")
     sec_li = [row[0] for row in cursor]
     # sec_li.insert(0, 'NULL')
-    print(sec_li)
+    # print(sec_li)
     combo1 = ttk.Combobox(
         sec_select_f,
         values=sec_li,
